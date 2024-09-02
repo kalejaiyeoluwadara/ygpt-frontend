@@ -4,7 +4,11 @@ import { FiCheckCircle } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaQuestionCircle } from "react-icons/fa";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
-function Empty() {
+interface Iprops {
+  empty: boolean;
+  setRemoveEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+}
+function Empty({ empty, setRemoveEmpty }: Iprops) {
   const prompts = [
     {
       text: "Kini o le ṣe fun ọ loni?",
@@ -28,22 +32,27 @@ function Empty() {
     },
   ];
 
+  const handleClick = () => {
+    setRemoveEmpty(!empty);
+  };
+
   return (
     <div className="h-full w-full flex-center flex-col gap-8">
       <div>
         <TbSquareRoundedLetterYFilled className="text-gray-200" size={70} />
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-4">
         {prompts.map((prompt, id) => {
           const IconComponent = prompt.icon;
           return (
-            <div
+            <button
+              onClick={handleClick}
               key={id}
-              className="h-[150px] w-40 pt-3 pb-4 flex flex-col px-3 gap-2 border border-zinc-700 rounded-2xl"
+              className="h-[150px] hover:bg-zinc-700 transition-all cursor-pointer w-40 pt-3 pb-4 flex flex-col px-3 gap-2 border border-zinc-700 rounded-2xl"
             >
               <IconComponent className={prompt.color} size={20} />
               <p className="text-[14px] text-start">{prompt.text}</p>
-            </div>
+            </button>
           );
         })}
       </div>
