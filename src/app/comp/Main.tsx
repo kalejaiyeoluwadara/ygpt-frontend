@@ -1,8 +1,9 @@
 import React from "react";
 import { RxUpload } from "react-icons/rx";
+import Empty from "./Empty";
 function Main() {
   return (
-    <main className="flex w-full flex-1 h-full items-start ">
+    <main className="flex flex-col w-full flex-1 h-full items-start ">
       <nav className="flex w-full justify-between py-4 items-center px-4 ">
         <div>
           <p className="font-semibold text-lg ">YGPT</p>
@@ -14,6 +15,9 @@ function Main() {
           <div className="flex-center h-[40px] w-[40px] rounded-full bg-orange-500 "></div>
         </div>
       </nav>
+      <main className="flex w-full h-full  items-center justify-center">
+        {true ? <Empty /> : <div></div>}
+      </main>
     </main>
   );
 }
