@@ -79,7 +79,9 @@
     --chart-5: 340 75% 55%;
   }
 }
-
+p{
+  @apply text-gray-200
+}
 
 @layer base {
   * {
