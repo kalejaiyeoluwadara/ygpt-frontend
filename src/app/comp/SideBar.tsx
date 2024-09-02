@@ -1,18 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { PiSidebarSimpleFill } from "react-icons/pi";
-import { IoIosCreate } from "react-icons/io";
+import { IoCreateOutline } from "react-icons/io5";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { AiOutlineAppstore } from "react-icons/ai";
+import { BsLayoutSidebarInset } from "react-icons/bs";
 import React from "react";
 function SideBar() {
   return (
     <aside className="w-[250px] h-full px-4 bg-zinc-900 ">
       <header className="flex w-full items-center justify-between  py-2">
         <button className="h-[35px] w-[35px] rounded-md bg-none hover:bg-zinc-800 transition-all text-gray-300 flex items-center justify-center ">
-          <PiSidebarSimpleFill size={20} className="" />
+          <BsLayoutSidebarInset size={20} className="" />
         </button>
         <button className="h-[35px] w-[35px] rounded-md bg-none hover:bg-zinc-800 transition-all text-gray-300 flex items-center justify-center ">
-          <IoIosCreate size={20} className="" />
+          <IoCreateOutline size={20} className="" />
         </button>
       </header>
       <main className="w-full flex-1 min-h-[75%] mt-4  ">
