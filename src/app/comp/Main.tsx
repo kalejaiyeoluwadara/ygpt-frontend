@@ -4,6 +4,7 @@ import { RxUpload } from "react-icons/rx";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
 import Empty from "./Empty";
 import Chat from "./Chat";
+import Nav from "./MainNav";
 
 type Tmessage = {
   sender: string;
@@ -51,17 +52,9 @@ function Main() {
 
   return (
     <main className="flex flex-col w-full flex-1 h-full items-start">
-      <nav className="flex w-full justify-between py-4 items-center px-4">
-        <div>
-          <p className="font-semibold text-lg">YGPT</p>
-        </div>
-        <div className="flex gap-2">
-          <div className="h-[40px] w-[40px] rounded-md bg-none hover:bg-gray-600 flex-center">
-            <RxUpload className="text-gray-200" size={25} />
-          </div>
-          <div className="flex-center h-[40px] w-[40px] rounded-full bg-orange-500"></div>
-        </div>
-      </nav>
+      {/* Nav */}
+      <Nav />
+      {/* Main content */}
       <main className="flex w-full h-full flex-1 items-center overflow-x-hidden justify-center">
         {empty ? (
           <Empty empty={empty} setRemoveEmpty={setRemoveEmpty} />
@@ -69,6 +62,7 @@ function Main() {
           <Chat messages={messages} loading={loading} />
         )}
       </main>
+      {/* footer text input */}
       <footer className="flex-center h-[100px] w-full">
         <div className="w-[80%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
           <input
