@@ -54,7 +54,7 @@ function Page() {
                 type="submit"
                 className="w-full bg-[#10a37f] text-white py-3 rounded-lg font-medium hover:bg-[#10a37f] transition-colors focus:outline-none focus:ring focus:ring-[#10a37f]"
               >
-                Sign Up
+                Login
               </button>
             </div>
           </form>
