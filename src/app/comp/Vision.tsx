@@ -1,12 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { RxUpload } from "react-icons/rx";
-import { HiOutlineArrowSmUp } from "react-icons/hi";
-import Empty from "./Empty";
-import Chat from "./Chat";
-import Nav from "./MainNav";
-import VisionChat from "./VisionChat";
 import { RiAttachment2 } from "react-icons/ri";
+import VisionChat from "./VisionChat";
+import Nav from "./MainNav";
+import { HiOutlineArrowSmUp } from "react-icons/hi";
 type Tmessage = {
   sender: string;
   text?: string;
@@ -15,26 +12,33 @@ type Tmessage = {
 
 function Vision() {
   const [empty, setRemoveEmpty] = useState(true);
-  const [prompt, setPrompt] = useState("");
+  const [file, setFile] = useState<File | null>(null); // File state for uploading images
   const [messages, setMessages] = useState<Tmessage[]>([]); // Type the state
   const [loading, setLoading] = useState(false);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const sendMessage = async () => {
-    if (prompt.trim().length === 0) return;
+    if (!file) return;
 
     setRemoveEmpty(false);
     setLoading(true);
 
     // Add the human message to the chat
-    setMessages((prev) => [...prev, { text: prompt, sender: "human" }]);
+    const imageUrl = URL.createObjectURL(file);
+    setMessages((prev) => [...prev, { imageUrl, sender: "human" }]);
+
+    const formData = new FormData();
+    formData.append("image", file); // Add file to form data
 
     try {
-      const response = await fetch("/api/generate", {
+      const response = await fetch("http://localhost:5000/generate", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
+        body: formData, // Send image data
       });
 
       const data = await response.json();
@@ -48,35 +52,9 @@ function Vision() {
       console.error("Error:", error);
     } finally {
       setLoading(false);
-      setPrompt("");
+      setFile(null);
     }
   };
-  const testMessages: Tmessage[] = [
-    {
-      sender: "human",
-      imageUrl: "https://via.placeholder.com/150", // Replace with a real image URL
-    },
-    {
-      sender: "ai",
-      text: "Apple",
-    },
-    {
-      sender: "human",
-      imageUrl: "https://via.placeholder.com/150", // Replace with another real image URL
-    },
-    {
-      sender: "ai",
-      text: "Car",
-    },
-    {
-      sender: "human",
-      imageUrl: "https://via.placeholder.com/150", // Replace with another real image URL
-    },
-    {
-      sender: "ai",
-      text: "Laptop",
-    },
-  ];
 
   return (
     <main className="flex flex-col w-full flex-1 h-full items-start">
@@ -84,19 +62,28 @@ function Vision() {
       <Nav />
       {/* Main content */}
       <main className="flex w-full h-full flex-1 items-center overflow-x-hidden justify-center">
-        {/* <Empty empty={empty} setRemoveEmpty={setRemoveEmpty} /> */}
-        <VisionChat messages={testMessages} loading={loading} />
+        <VisionChat messages={messages} loading={loading} />
       </main>
-      {/* footer text input */}
+      {/* footer file input */}
       <footer className="flex-center h-[100px] w-full">
         <div className="w-auto bg-neutral-700 px-2 py-3 flex-center h-[50px] rounded-full">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+            id="file-upload"
+          />
+          <label htmlFor="file-upload" className="cursor-pointer">
+            <RiAttachment2 size={25} />
+          </label>
           <button
             onClick={sendMessage}
-            className={`h-[40px] w-[40px] flex-center transition-all rounded-full ${
-              prompt.length === 0 ? "bg-gray-200" : "bg-white hover:bg-gray-200"
+            className={`ml-3 h-[40px] w-[40px] flex-center transition-all rounded-full ${
+              !file ? "bg-gray-200" : "bg-white hover:bg-gray-200"
             }`}
           >
-            <RiAttachment2 size={25} />
+            <HiOutlineArrowSmUp size={25} />
           </button>
         </div>
       </footer>

@@ -1,11 +1,45 @@
-import React from "react";
-import { AiOutlineRobot } from "react-icons/ai"; // Example logo from react-icons
+"use client";
+import React, { useState } from "react";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import AuthFoot from "../comp/AuthFoot";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 function Page() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const onSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevents form from reloading the page
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/signup", user);
+      console.log("Signup successful:", response.data);
+      router.push("/login");
+    } catch (error: any) {
+      console.error("Error occurred:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="flex items-start justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-md  p-8 rounded-lg ">
+      <div className="w-full max-w-md p-8 rounded-lg">
         {/* Logo */}
         <section className="flex justify-center mb-6">
           <TbSquareRoundedLetterYFilled size={40} />
@@ -17,7 +51,7 @@ function Page() {
             Create your account
           </h2>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={onSignUp}>
             <div>
               <label
                 htmlFor="email"
@@ -28,6 +62,9 @@ function Page() {
               <input
                 id="email"
                 type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
                 required
               />
@@ -43,6 +80,10 @@ function Page() {
               <input
                 id="password"
                 type="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                placeholder="Password"
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
                 required
               />
@@ -52,9 +93,12 @@ function Page() {
             <div>
               <button
                 type="submit"
-                className="w-full bg-[#10a37f] text-white py-3 rounded-lg font-medium hover:bg-[#10a37f] transition-colors focus:outline-none focus:ring focus:ring-[#10a37f]"
+                className={`w-full bg-[#10a37f] text-white py-3 rounded-lg font-medium hover:bg-[#10a37f] transition-colors focus:outline-none focus:ring focus:ring-[#10a37f] ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
               >
-                Sign Up
+                {loading ? "Signing up..." : "Sign Up"}
               </button>
             </div>
           </form>
@@ -62,12 +106,12 @@ function Page() {
           {/* Additional Links */}
           <p className="text-center text-sm text-gray-500 mt-6">
             Already have an account?{" "}
-            <a
-              href="#"
+            <Link
+              href="/login"
               className="text-[#10a37f] font-semibold hover:underline"
             >
-              Log in
-            </a>
+              Login
+            </Link>
           </p>
         </section>
       </div>

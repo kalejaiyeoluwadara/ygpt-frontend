@@ -59,7 +59,9 @@ function Nav() {
         <div className="h-[40px] w-[40px] rounded-md bg-none hover:bg-gray-600 flex-center">
           <RxUpload className="text-gray-200" size={25} />
         </div>
-        <div className="flex-center h-[40px] w-[40px] rounded-full bg-orange-500"></div>
+        <Link href={"/login"}>
+          <div className="flex-center cursor-pointer h-[40px] w-[40px] rounded-full bg-orange-500"></div>
+        </Link>
       </div>
     </nav>
   );
