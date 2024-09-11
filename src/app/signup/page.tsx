@@ -1,13 +1,13 @@
 import React from "react";
 import { AiOutlineRobot } from "react-icons/ai"; // Example logo from react-icons
-
+import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 function Page() {
   return (
     <main className="flex items-start justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md  p-8 rounded-lg ">
         {/* Logo */}
         <section className="flex justify-center mb-6">
-          <AiOutlineRobot className="text-6xl text-blue-600" />
+          <TbSquareRoundedLetterYFilled size={40} />
         </section>
 
         {/* Form */}
