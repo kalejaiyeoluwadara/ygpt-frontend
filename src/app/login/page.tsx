@@ -1,6 +1,7 @@
 import React from "react";
 import { AiOutlineRobot } from "react-icons/ai"; // Example logo from react-icons
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
+import AuthFoot from "../comp/AuthFoot";
 function Page() {
   return (
     <main className="flex items-start justify-center h-screen bg-gray-100">
@@ -70,6 +71,7 @@ function Page() {
           </p>
         </section>
       </div>
+      <AuthFoot />
     </main>
   );
 }
