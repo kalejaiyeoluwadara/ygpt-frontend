@@ -14,7 +14,7 @@ type Tmessage = {
 function Main() {
   const [empty, setRemoveEmpty] = useState(true);
   const [prompt, setPrompt] = useState("");
-  const [messages, setMessages] = useState<Tmessage[]>([]); // Type the state
+  const [messages, setMessages] = useState<Tmessage[]>([]);
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
@@ -23,7 +23,6 @@ function Main() {
     setRemoveEmpty(false);
     setLoading(true);
 
-    // Add the human message to the chat
     setMessages((prev) => [...prev, { text: prompt, sender: "human" }]);
 
     try {
@@ -37,7 +36,6 @@ function Main() {
 
       const data = await response.json();
       if (response.ok) {
-        // Add the AI response to the chat
         setMessages((prev) => [...prev, { text: data.text, sender: "ai" }]);
       } else {
         console.error("Error:", data.error);
@@ -50,6 +48,12 @@ function Main() {
     }
   };
 
+  const handlePromptClick = (text: string) => {
+    setRemoveEmpty(false);
+    setPrompt(text);
+    sendMessage();
+  };
+
   return (
     <main className="flex flex-col w-full flex-1 h-full items-start">
       {/* Nav */}
@@ -57,12 +61,12 @@ function Main() {
       {/* Main content */}
       <main className="flex w-full h-full flex-1 items-center overflow-x-hidden justify-center">
         {empty ? (
-          <Empty empty={empty} setRemoveEmpty={setRemoveEmpty} />
+          <Empty handlePromptClick={handlePromptClick} />
         ) : (
           <Chat messages={messages} loading={loading} />
         )}
       </main>
-      {/* footer text input */}
+      {/* Footer text input */}
       <footer className="flex-center h-[100px] w-full">
         <div className="w-[80%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
           <input

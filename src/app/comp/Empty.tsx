@@ -4,11 +4,12 @@ import { FiCheckCircle } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaQuestionCircle } from "react-icons/fa";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
+
 interface Iprops {
-  empty: boolean;
-  setRemoveEmpty: React.Dispatch<React.SetStateAction<boolean>>;
+  handlePromptClick: (text: string) => void;
 }
-function Empty({ empty, setRemoveEmpty }: Iprops) {
+
+function Empty({ handlePromptClick }: Iprops) {
   const prompts = [
     {
       text: "Kini o le ṣe fun ọ loni?",
@@ -32,10 +33,6 @@ function Empty({ empty, setRemoveEmpty }: Iprops) {
     },
   ];
 
-  const handleClick = () => {
-    setRemoveEmpty(!empty);
-  };
-
   return (
     <div className="h-full w-full flex-center flex-col gap-8">
       <div>
@@ -46,7 +43,7 @@ function Empty({ empty, setRemoveEmpty }: Iprops) {
           const IconComponent = prompt.icon;
           return (
             <button
-              onClick={handleClick}
+              onClick={() => handlePromptClick(prompt.text)}
               key={id}
               className="h-[150px] hover:bg-zinc-700 transition-all cursor-pointer w-40 pt-3 pb-4 flex flex-col px-3 gap-2 border border-zinc-700 rounded-2xl"
             >
