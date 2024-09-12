@@ -45,7 +45,7 @@ function Vision() {
 
     try {
       const response = await fetch(
-        "https://gemini-api-46ez.onrender.com/generate",
+        "https://gemini-api-46ez.onrender.com/vision",
         {
           method: "POST",
           body: formData, // Send image data

@@ -5,6 +5,7 @@ import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import React from "react";
+import History from "./History";
 function SideBar() {
   return (
     <aside className="w-[250px] flex-shrink-0 h-full px-4 bg-zinc-900 ">
@@ -38,6 +39,8 @@ function SideBar() {
               <p className="text-base font-normal  ">Explore YGPT</p>
             </section>
           </div>
+          {/* history */}
+          <History />
         </header>
       </main>
     </aside>
