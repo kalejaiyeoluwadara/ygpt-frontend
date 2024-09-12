@@ -31,7 +31,7 @@ function VisionChat({ messages, loading }: Ichat) {
             <img
               src={message.imageUrl}
               alt="Uploaded by user"
-              className="mb-2 max-w-full rounded-lg"
+              className="mb-2 max-w-[400px] rounded-lg"
             />
           )}
           {message.sender === "ai" && (
