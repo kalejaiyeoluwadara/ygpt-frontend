@@ -36,10 +36,13 @@ function Vision() {
     formData.append("image", file); // Add file to form data
 
     try {
-      const response = await fetch("http://localhost:5000/generate", {
-        method: "POST",
-        body: formData, // Send image data
-      });
+      const response = await fetch(
+        "https://gemini-api-46ez.onrender.com/generate",
+        {
+          method: "POST",
+          body: formData, // Send image data
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
