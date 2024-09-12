@@ -77,7 +77,7 @@ function Nav() {
           <RxUpload className="text-gray-200" size={25} />
         </div>
         <Link href={"/login"}>
-          <div className="flex-center cursor-pointer h-[40px] w-[40px] rounded-full bg-orange-500">
+          <div className="flex-center text-white cursor-pointer h-[40px] w-[40px] rounded-full bg-orange-500">
             {emailInitials}
           </div>
         </Link>
