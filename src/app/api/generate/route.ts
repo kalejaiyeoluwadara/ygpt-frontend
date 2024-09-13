@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import ChatModel from "@/model/ChatModel"; // Import your chat model
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { connect } from "@/dbconfig/dbConfig"; // Import your DB connection
+import ChatModel from "../../../model/chatModel";
 
 connect(); // Connect to the database
 

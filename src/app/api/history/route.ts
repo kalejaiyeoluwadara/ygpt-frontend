@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt, { JwtPayload } from "jsonwebtoken";
-import ChatModel from "@/model/ChatModel"; // Adjust the path to your ChatModel
+import jwt, { JwtPayload } from "jsonwebtoken"; // Adjust the path to your ChatModel
 import { connect } from "@/dbconfig/dbConfig";
+import ChatModel from "@/model/chatModel";
 connect();
 
 export async function GET(req: NextRequest) {
