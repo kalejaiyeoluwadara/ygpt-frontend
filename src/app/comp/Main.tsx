@@ -68,10 +68,10 @@ function Main() {
       </main>
       {/* Footer text input */}
       <footer className="flex-center h-[100px] w-full">
-        <div className="w-[80%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
+        <div className="sm:w-[80%] w-[90%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
           <input
             type="text"
-            className="!bg-transparent px-4 placeholder:text-gray-200 text-white border-none flex-1 outline-none"
+            className="!bg-transparent px-4 placeholder:text-gray-200 text-white border-none flex-1  outline-none"
             name="prompt"
             placeholder="Message YGPT"
             value={prompt}
@@ -84,7 +84,7 @@ function Main() {
           />
           <button
             onClick={sendMessage}
-            className={`h-[30px] w-[30px] flex-center transition-all rounded-full ${
+            className={`h-[30px] w-[30px] flex-shrink-0 flex-center transition-all rounded-full ${
               prompt.length === 0 ? "bg-gray-200" : "bg-white hover:bg-gray-200"
             }`}
           >
