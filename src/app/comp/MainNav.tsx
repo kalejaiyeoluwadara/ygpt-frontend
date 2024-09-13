@@ -36,7 +36,7 @@ function Nav() {
         <IoIosArrowDown size={15} />
         {/* Modal */}
         {modal && (
-          <div className="absolute flex flex-col border border-gray-500 left-[-2px] bottom-[-9.9rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
+          <div className="absolute flex z-50 flex-col border border-gray-500 left-[-2px] bottom-[-9.9rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
             {/* Prompt */}
             <Link
               href={"/"}

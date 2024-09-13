@@ -8,7 +8,7 @@ import React from "react";
 import History from "./History";
 function SideBar() {
   return (
-    <aside className="w-[250px] flex-shrink-0 h-full px-4 bg-zinc-900 ">
+    <aside className="w-[250px] sm:block hidden flex-shrink-0 h-full px-4 bg-zinc-900 ">
       <header className="flex w-full items-center justify-between  py-2">
         <button className="h-[35px] w-[35px] rounded-md bg-none hover:bg-zinc-800 transition-all text-gray-300 flex items-center justify-center ">
           <BsLayoutSidebarInset size={20} className="" />

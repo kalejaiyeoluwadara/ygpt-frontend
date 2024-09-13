@@ -17,7 +17,7 @@ function Chat({ messages, loading }: Ichat) {
   const mlength = messages.length - 1;
 
   return (
-    <div className="h-[300px] w-full flex flex-1 items-start flex-col gap-8 p-4 overflow-y-auto">
+    <div className="h-[300px]  w-full flex flex-1 items-start flex-col gap-8 p-4 overflow-y-auto">
       {messages.map((message, index) => (
         <div
           key={index}

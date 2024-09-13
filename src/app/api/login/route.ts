@@ -35,7 +35,7 @@ export async function POST(req: NextRequest, resp: NextResponse) {
     };
     // create token
     const token = await jwt.sign(tokenData, process.env.JWT_SECRET!, {
-      expiresIn: "1d",
+      expiresIn: "5d",
     });
     const response = NextResponse.json({ message: "Loin successful" });
     response.cookies.set("token", token, { httpOnly: true });

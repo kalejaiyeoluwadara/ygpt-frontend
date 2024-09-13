@@ -59,7 +59,7 @@ function Main() {
       {/* Nav */}
       <Nav />
       {/* Main content */}
-      <main className="flex w-full h-full flex-1 items-center overflow-x-hidden justify-center">
+      <main className="flex w-full h-full flex-1 sm:items-center overflow-x-hidden justify-center">
         {empty ? (
           <Empty handlePromptClick={handlePromptClick} />
         ) : (

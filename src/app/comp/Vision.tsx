@@ -74,7 +74,7 @@ function Vision() {
       {/* Nav */}
       <Nav />
       {/* Main content */}
-      <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center p-4">
+      <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center  p-2 sm:p-4">
         {messages.length === 0 ? (
           <div className="flex flex-col items-center text-center max-w-md">
             {/* Icon */}

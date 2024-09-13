@@ -17,7 +17,7 @@ interface Ichat {
 function VisionChat({ messages, loading }: Ichat) {
   const mlength = messages.length - 1;
   return (
-    <div className="h-[300px] w-full flex flex-1 items-start flex-col gap-8 p-4">
+    <div className="h-[300px] w-full flex flex-1 items-start flex-col gap-4 sm:gap-8 sm:p-4">
       {messages.map((message, index) => (
         <div
           key={index}
@@ -31,7 +31,7 @@ function VisionChat({ messages, loading }: Ichat) {
             <img
               src={message.imageUrl}
               alt="Uploaded by user"
-              className="mb-2 max-w-[400px] rounded-lg"
+              className="mb-2 max-w-[200px] sm:max-w-[400px] rounded-lg"
             />
           )}
           {message.sender === "ai" && (

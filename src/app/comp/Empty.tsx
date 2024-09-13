@@ -38,14 +38,14 @@ function Empty({ handlePromptClick }: Iprops) {
       <div>
         <TbSquareRoundedLetterYFilled className="text-gray-200" size={70} />
       </div>
-      <div className="flex gap-4">
+      <div className="grid grid-cols-2 sm:flex gap-4">
         {prompts.map((prompt, id) => {
           const IconComponent = prompt.icon;
           return (
             <button
               onClick={() => handlePromptClick(prompt.text)}
               key={id}
-              className="h-[150px] hover:bg-zinc-700 transition-all cursor-pointer w-40 pt-3 pb-4 flex flex-col px-3 gap-2 border border-zinc-700 rounded-2xl"
+              className=" h-[120px] sm:h-[150px] hover:bg-zinc-700 transition-all cursor-pointer w-40 pt-3 pb-4 flex flex-col px-3 gap-2 border border-zinc-700 rounded-2xl"
             >
               <IconComponent className={prompt.color} size={20} />
               <p className="text-[14px] text-start">{prompt.text}</p>
