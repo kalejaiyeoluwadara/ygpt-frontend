@@ -12,8 +12,11 @@ type Tmessage = {
   sender: string;
   text: string;
 };
-
-function Main() {
+type SideBarProps = {
+  side: boolean;
+  setAside: React.Dispatch<React.SetStateAction<boolean>>;
+};
+function Main({ side, setAside }: SideBarProps) {
   const [empty, setRemoveEmpty] = useState(true);
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState<Tmessage[]>([]);
@@ -67,7 +70,7 @@ function Main() {
   return (
     <main className="flex flex-col w-full flex-1 h-full items-start">
       {/* Nav */}
-      <Nav />
+      <Nav side={side} setAside={setAside} />
 
       {/* Main content */}
       <main className="flex w-full h-full flex-1 sm:items-center overflow-x-hidden justify-center">

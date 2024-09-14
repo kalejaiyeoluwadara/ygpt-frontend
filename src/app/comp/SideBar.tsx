@@ -6,6 +6,10 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import React from "react";
 import History from "./History";
+type SideBarProps = {
+  side: boolean;
+  setAside: React.Dispatch<React.SetStateAction<boolean>>;
+};
 function SideBar() {
   return (
     <aside className="w-[250px] sm:block hidden flex-shrink-0 h-full px-4 bg-zinc-900 ">
