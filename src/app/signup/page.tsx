@@ -37,6 +37,9 @@ function Page() {
     }
   };
 
+  // Check if both email and password fields are filled
+  const isFormValid = user.email !== "" && user.password !== "";
+
   return (
     <main className="flex items-start justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 rounded-lg">
@@ -62,6 +65,7 @@ function Page() {
               <input
                 id="email"
                 type="email"
+                placeholder="email@gmail.com"
                 name="email"
                 value={user.email}
                 onChange={handleChange}
@@ -94,9 +98,11 @@ function Page() {
               <button
                 type="submit"
                 className={`w-full bg-[#10a37f] text-white py-3 rounded-lg font-medium hover:bg-[#10a37f] transition-colors focus:outline-none focus:ring focus:ring-[#10a37f] ${
-                  loading ? "opacity-50 cursor-not-allowed" : ""
+                  !isFormValid || loading
+                    ? "opacity-50 cursor-not-allowed "
+                    : ""
                 }`}
-                disabled={loading}
+                disabled={!isFormValid || loading} // Disable button if form is invalid or loading
               >
                 {loading ? "Signing up..." : "Sign Up"}
               </button>

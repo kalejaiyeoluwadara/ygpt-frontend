@@ -5,7 +5,7 @@ import AuthFoot from "../comp/AuthFoot";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
+import { toast, Toaster } from "react-hot-toast"; // Import react-hot-toast
 function Page() {
   // State to handle form inputs and loading
   const [user, setUser] = useState({
@@ -34,6 +34,7 @@ function Page() {
       router.push("/");
     } catch (error: any) {
       console.error("Login error:", error.message);
+      toast.error("Invalid email or password. Please try again."); // Show toast on error
     } finally {
       setLoading(false);
     }
@@ -41,6 +42,15 @@ function Page() {
 
   return (
     <main className="flex items-start justify-center h-screen bg-gray-100">
+      <Toaster
+        toastOptions={{
+          // Define default options
+          style: {
+            width: "auto",
+          },
+          duration: 4000,
+        }}
+      />
       <div className="w-full max-w-md p-8 rounded-lg">
         {/* Logo */}
         <section className="flex justify-center mb-6">
