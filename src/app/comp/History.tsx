@@ -53,7 +53,7 @@ function History() {
   const mostRecentChat = chatHistory.length > 0 ? chatHistory[0] : null;
 
   return (
-    <section className="mt-8 h-[360px] overflow-auto font-semibold text-white">
+    <section className="mt-8 h-[360px] overflow-auto no-scrollbar font-semibold text-white">
       <p className="mb-2 text-sm">Recently</p>
       <div className="w-full flex flex-col gap-2">
         {loading ? (

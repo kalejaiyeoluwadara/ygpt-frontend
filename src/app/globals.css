@@ -85,6 +85,9 @@ p{
 .flex-center{
   @apply flex items-center justify-center
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 @layer base {
   * {
