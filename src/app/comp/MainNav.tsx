@@ -55,9 +55,9 @@ function Nav({ side, setAside }: SideBarProps) {
       <Toaster />
       <section className="flex items-center ">
         <BsLayoutSidebarInset
-          size={20}
+          size={25}
           onClick={() => setAside(!side)}
-          className="text-gray-200 block sm:hidden mr-1 sm:mr-3"
+          className="text-gray-200 block sm:hidden mr-2 sm:mr-3"
         />
         {hide && (
           <BsLayoutSidebarInset
@@ -123,7 +123,7 @@ function Nav({ side, setAside }: SideBarProps) {
           <section className="relative">
             <div
               onClick={() => setLog(!log)}
-              className="flex-center text-white cursor-pointer h-[40px] w-[40px] rounded-full bg-orange-500"
+              className="flex-center text-white cursor-pointer h-[40px] w-[40px] rounded-full flex-shrink-0 bg-orange-500"
             >
               {emailInitials}
             </div>
