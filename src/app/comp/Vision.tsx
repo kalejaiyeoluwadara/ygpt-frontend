@@ -5,6 +5,7 @@ import VisionChat from "./VisionChat";
 import Nav from "./MainNav";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
 import { MdOutlineImageSearch } from "react-icons/md"; // Icon for empty state
+import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 type Tmessage = {
   sender: string;
@@ -44,21 +45,26 @@ function Vision() {
     formData.append("image", file); // Add file to form data
 
     try {
-      const response = await fetch(
+      const response = await axios.post(
         "https://gemini-api-46ez.onrender.com/vision",
+        formData, // Send image data
         {
-          method: "POST",
-          body: formData, // Send image data
+          headers: {
+            "Content-Type": "multipart/form-data", // Set content type for file uploads
+          },
         }
       );
 
-      const data = await response.json();
-      if (response.ok) {
+      if (response.status === 200) {
         // Add the AI response to the chat
-        setMessages((prev) => [...prev, { text: data.text, sender: "ai" }]);
+        setMessages((prev) => [
+          ...prev,
+          { text: response.data.text, sender: "ai" },
+        ]);
       } else {
         setError(
-          data.error || "An error occurred while generating a response."
+          response.data.error ||
+            "An error occurred while generating a response."
         );
       }
     } catch (error) {

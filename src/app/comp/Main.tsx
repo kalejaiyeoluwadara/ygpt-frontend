@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import axios from "axios";
 import { RxUpload } from "react-icons/rx";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
 import Empty from "./Empty";
@@ -29,17 +30,21 @@ function Main() {
     setMessages((prev) => [...prev, { text: prompt, sender: "human" }]);
 
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-      });
+      const response = await axios.post(
+        "/api/generate",
+        { prompt },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      const data = await response.json();
-      if (response.ok) {
-        setMessages((prev) => [...prev, { text: data.text, sender: "ai" }]);
+      if (response.status === 200) {
+        setMessages((prev) => [
+          ...prev,
+          { text: response.data.text, sender: "ai" },
+        ]);
       } else {
         setErrorMessage("An error occurred while processing your request.");
       }
