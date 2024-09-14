@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { RxUpload } from "react-icons/rx";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
@@ -16,12 +17,14 @@ function Main() {
   const [prompt, setPrompt] = useState("");
   const [messages, setMessages] = useState<Tmessage[]>([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State for error message
 
   const sendMessage = async () => {
     if (prompt.trim().length === 0) return;
 
     setRemoveEmpty(false);
     setLoading(true);
+    setErrorMessage(null); // Clear any previous error messages
 
     setMessages((prev) => [...prev, { text: prompt, sender: "human" }]);
 
@@ -38,10 +41,12 @@ function Main() {
       if (response.ok) {
         setMessages((prev) => [...prev, { text: data.text, sender: "ai" }]);
       } else {
-        console.error("Error:", data.error);
+        setErrorMessage("An error occurred while processing your request.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      setErrorMessage(
+        "An error occurred. Please check your connection and try again."
+      );
     } finally {
       setLoading(false);
       setPrompt("");
@@ -58,6 +63,7 @@ function Main() {
     <main className="flex flex-col w-full flex-1 h-full items-start">
       {/* Nav */}
       <Nav />
+
       {/* Main content */}
       <main className="flex w-full h-full flex-1 sm:items-center overflow-x-hidden justify-center">
         {empty ? (
@@ -66,12 +72,13 @@ function Main() {
           <Chat messages={messages} loading={loading} />
         )}
       </main>
+
       {/* Footer text input */}
       <footer className="flex-center h-[100px] w-full">
         <div className="sm:w-[80%] w-[90%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
           <input
             type="text"
-            className="!bg-transparent px-4 placeholder:text-gray-200 text-white border-none flex-1  outline-none"
+            className="!bg-transparent px-4 placeholder:text-gray-200 text-white border-none flex-1 outline-none"
             name="prompt"
             placeholder="Message YGPT"
             value={prompt}
@@ -92,6 +99,13 @@ function Main() {
           </button>
         </div>
       </footer>
+
+      {/* Error Message Display */}
+      {errorMessage && (
+        <div className="text-red-500 w-full px-2 flex items-center justify-center pb-8 text-sm sm:mt-2 text-center">
+          {errorMessage}
+        </div>
+      )}
     </main>
   );
 }

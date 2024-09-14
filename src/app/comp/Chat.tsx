@@ -54,8 +54,8 @@ function Chat({ messages, loading }: Ichat) {
         </div>
       ))}
       {loading && (
-        <div className="p-3 rounded-lg self-start bg-gray-600 text-white">
-          Generating response...
+        <div className="p-3 rounded-lg self-start bg-zinc-600 text-white">
+          ...
         </div>
       )}
     </div>
