@@ -7,6 +7,7 @@ import { HiOutlineArrowSmUp } from "react-icons/hi";
 import { MdOutlineImageSearch } from "react-icons/md"; // Icon for empty state
 import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
+import { useGlobal } from "../context";
 type Tmessage = {
   sender: string;
   text?: string;
@@ -14,6 +15,7 @@ type Tmessage = {
 };
 
 function Vision() {
+  const { side, setAside } = useGlobal();
   const [empty, setRemoveEmpty] = useState(true);
   const [file, setFile] = useState<File | null>(null); // File state for uploading images
   const [messages, setMessages] = useState<Tmessage[]>([]); // Type the state
@@ -78,7 +80,7 @@ function Vision() {
   return (
     <main className="flex flex-col w-full flex-1 h-full items-start ">
       {/* Nav */}
-      <Nav />
+      <Nav side={side} setAside={setAside} />
       {/* Main content */}
       <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center  p-2 sm:p-4">
         {messages.length === 0 ? (
