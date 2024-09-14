@@ -4,7 +4,9 @@ import React, { useContext, useState, ReactNode } from "react";
 // Define the shape of the context value
 interface AppContextType {
   side: boolean;
+  hide: boolean;
   setAside: React.Dispatch<React.SetStateAction<boolean>>;
+  setHide: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -15,9 +17,10 @@ interface Props {
 
 function AppProvider({ children }: Props) {
   const [side, setAside] = useState<boolean>(false);
+  const [hide, setHide] = useState<boolean>(false);
 
   return (
-    <AppContext.Provider value={{ side, setAside }}>
+    <AppContext.Provider value={{ side, setAside, hide, setHide }}>
       {children}
     </AppContext.Provider>
   );

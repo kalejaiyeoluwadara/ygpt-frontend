@@ -10,6 +10,7 @@ import { TbLogout } from "react-icons/tb";
 import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useGlobal } from "../context";
 type SideBarProps = {
   side: boolean;
   setAside: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,6 +49,7 @@ function Nav({ side, setAside }: SideBarProps) {
       console.error("Error logging out", error);
     }
   };
+  const { hide, setHide } = useGlobal();
   return (
     <nav className="flex w-full justify-between py-4 items-center px-4">
       <Toaster />
@@ -55,8 +57,15 @@ function Nav({ side, setAside }: SideBarProps) {
         <BsLayoutSidebarInset
           size={20}
           onClick={() => setAside(!side)}
-          className="text-gray-200 mr-1 sm:mr-3"
+          className="text-gray-200 block sm:hidden mr-1 sm:mr-3"
         />
+        {hide && (
+          <BsLayoutSidebarInset
+            size={20}
+            onClick={() => setHide(!hide)}
+            className="text-gray-200 sm:block hidden cursor-pointer mr-1 sm:mr-3"
+          />
+        )}
         <div
           onClick={() => setModal(!modal)}
           className={`flex text-gray-200 relative hover:bg-neutral-700 ${
@@ -64,7 +73,7 @@ function Nav({ side, setAside }: SideBarProps) {
           } rounded-md px-3 cursor-pointer py-1 items-center gap-2`}
         >
           <p className="font-semibold text-lg">YGPT</p>
-          <IoIosArrowDown size={15} />
+          <IoIosArrowDown className=" animate-bounce " size={15} />
           {/* Modal */}
           {modal && (
             <div className="absolute flex z-50 flex-col border border-gray-500 left-[-2px] bottom-[-9.9rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">

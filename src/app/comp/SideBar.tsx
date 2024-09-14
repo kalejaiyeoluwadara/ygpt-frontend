@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { PiSidebarSimpleFill } from "react-icons/pi";
 import { IoCreateOutline } from "react-icons/io5";
@@ -6,16 +7,26 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import React from "react";
 import History from "./History";
+import { useGlobal } from "../context";
 type SideBarProps = {
   side: boolean;
   setAside: React.Dispatch<React.SetStateAction<boolean>>;
 };
 function SideBar() {
+  const { hide, setHide } = useGlobal();
   return (
-    <aside className="w-[250px] sm:block hidden flex-shrink-0 h-full px-4 bg-zinc-900 ">
+    <aside
+      className={`w-[250px] transition-all duration-700 ${
+        hide ? "" : "sm:block"
+      } hidden flex-shrink-0 h-full px-4 bg-zinc-900 `}
+    >
       <header className="flex w-full items-center justify-between  py-2">
         <button className="h-[35px] w-[35px] rounded-md bg-none hover:bg-zinc-800 transition-all text-gray-300 flex items-center justify-center ">
-          <BsLayoutSidebarInset size={20} className="" />
+          <BsLayoutSidebarInset
+            onClick={() => setHide(!hide)}
+            size={20}
+            className=""
+          />
         </button>
         <button className="h-[35px] w-[35px] rounded-md bg-none hover:bg-zinc-800 transition-all text-gray-300 flex items-center justify-center ">
           <IoCreateOutline size={20} className="" />
