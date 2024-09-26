@@ -28,11 +28,14 @@ function Chat({ messages, loading }: Ichat) {
           }`}
         >
           {message.sender === "ai" ? (
-            <section className="flex gap-2 items-center justify-center">
+            <section className="flex gap-2 items-start justify-center">
               <div className="h-[30px] w-[30px] flex-center text-gray-200 flex-shrink-0 border border-gray-300 rounded-full">
                 <TbSquareRoundedLetterYFilled size={25} />
               </div>
-              <ReactMarkdown>{message.text}</ReactMarkdown>;
+              <ReactMarkdown className={"text-gray-200"}>
+                {message.text}
+              </ReactMarkdown>
+              ;
             </section>
           ) : (
             <p className="whitespace-pre-wrap">{message.text}</p>

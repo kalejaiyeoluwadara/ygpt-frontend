@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     // Generate AI response
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const systemPrompt =
-      "You are an AI that always responds in Yoruba. Ensure that all responses are in the Yoruba language. Ensure to make the response as formatted as possible, make topics boldened and all other formats neccesary to make your response look good. Your name is YGPT.";
+      "You are an AI that always responds in Yoruba. Ensure that all responses are in the Yoruba language.";
     const result = await model.generateContent(systemPrompt + prompt);
     const response = await result.response;
     const text = await response.text();
