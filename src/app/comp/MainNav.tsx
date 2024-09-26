@@ -111,6 +111,22 @@ function Nav({ side, setAside }: SideBarProps) {
                 </div>
                 <div></div>
               </Link>
+              {/* Study Pal */}
+              <Link
+                href={"/studypal"}
+                className="w-full flex justify-between items-center h-[60px] px-2 hover:bg-stone-600 rounded-md"
+              >
+                <div className="flex gap-2 items-center justify-start">
+                  <div className="h-[30px] w-[30px] bg-stone-600 rounded-full flex-center">
+                    <PiPlanetThin size={15} className="" />
+                  </div>
+                  <div>
+                    <p className="text-[16px] leading-[0.9]">YGPT StudyPal</p>
+                    <p className="text-[11px]">Study with YGPT</p>
+                  </div>
+                </div>
+                <div></div>
+              </Link>
             </div>
           )}
         </div>
