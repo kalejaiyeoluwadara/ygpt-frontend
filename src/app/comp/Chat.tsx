@@ -2,7 +2,7 @@ import React from "react";
 import { IoCopyOutline } from "react-icons/io5";
 import { SlLike } from "react-icons/sl";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
-
+import ReactMarkdown from "react-markdown";
 export type Tmessage = {
   sender: string;
   text: string;
@@ -32,7 +32,7 @@ function Chat({ messages, loading }: Ichat) {
               <div className="h-[30px] w-[30px] flex-center text-gray-200 flex-shrink-0 border border-gray-300 rounded-full">
                 <TbSquareRoundedLetterYFilled size={25} />
               </div>
-              <p className="whitespace-pre-wrap">{message.text}</p>
+              <ReactMarkdown>{message.text}</ReactMarkdown>;
             </section>
           ) : (
             <p className="whitespace-pre-wrap">{message.text}</p>

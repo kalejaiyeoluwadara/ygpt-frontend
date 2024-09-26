@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     // Generate AI response
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
     const systemPrompt =
-      "You are an AI that always responds in Yoruba. Ensure that all responses are in the Yoruba language.";
+      "You are an AI that always responds in Yoruba. Ensure that all responses are in the Yoruba language. Ensure to make the response as formatted as possible, make topics boldened and all other formats neccesary to make your response look good. Your name is YGPT.";
     const result = await model.generateContent(systemPrompt + prompt);
     const response = await result.response;
     const text = await response.text();
@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
         }
       } catch (error) {
         console.error("Failed to verify token or save chat history:", error);
-        // Proceed without saving if there is an error with token verification or saving
       }
     }
 
