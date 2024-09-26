@@ -11,6 +11,7 @@ import axios from "axios";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useGlobal } from "../context";
+import { FaBook } from "react-icons/fa6";
 type SideBarProps = {
   side: boolean;
   setAside: React.Dispatch<React.SetStateAction<boolean>>;
@@ -76,7 +77,7 @@ function Nav({ side, setAside }: SideBarProps) {
           <IoIosArrowDown className=" animate-bounce " size={15} />
           {/* Modal */}
           {modal && (
-            <div className="absolute flex z-50 flex-col border border-gray-500 left-[-2px] bottom-[-9.9rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
+            <div className="absolute flex z-50 flex-col border border-gray-500 left-[-2px] bottom-[-14rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
               {/* Prompt */}
               <Link
                 href={"/"}
@@ -118,7 +119,7 @@ function Nav({ side, setAside }: SideBarProps) {
               >
                 <div className="flex gap-2 items-center justify-start">
                   <div className="h-[30px] w-[30px] bg-stone-600 rounded-full flex-center">
-                    <PiPlanetThin size={15} className="" />
+                    <FaBook size={15} className="" />
                   </div>
                   <div>
                     <p className="text-[16px] leading-[0.9]">YGPT StudyPal</p>
