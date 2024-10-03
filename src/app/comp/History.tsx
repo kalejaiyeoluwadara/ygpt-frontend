@@ -75,7 +75,9 @@ function History() {
                 onClick={() => handleChatClick(chat._id)} // Navigate to chat when clicked
               >
                 <div>
-                  <p className="text-sm w-[140px]  truncate">{chatTitle}</p>
+                  <p className="text-sm font-medium w-[140px]  truncate">
+                    {chatTitle}
+                  </p>
                   {/* <p className="text-xs text-gray-400">
                     {new Date(chat.createdAt).toLocaleDateString()}
                   </p> */}

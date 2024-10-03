@@ -68,21 +68,21 @@ function Main({ side, setAside }: SideBarProps) {
   };
 
   return (
-    <main className="flex flex-col w-full flex-1 h-full items-start">
+    <main className="flex flex-col w-full  h-screen items-start">
       {/* Nav */}
       <Nav side={side} setAside={setAside} />
 
       {/* Main content */}
-      <main className="flex w-full h-full flex-1 sm:items-center overflow-x-hidden justify-center">
+      <article className="flex w-full h-full flex-1  sm:items-center overflow-x-hidden justify-center">
         {empty ? (
           <Empty handlePromptClick={handlePromptClick} />
         ) : (
           <Chat messages={messages} loading={loading} />
         )}
-      </main>
+      </article>
 
       {/* Footer text input */}
-      <footer className="flex-center h-[100px] w-full">
+      <footer className="flex-center  h-[100px] w-full">
         <div className="sm:w-[80%] w-[90%] bg-neutral-700 px-2 flex-center h-[50px] rounded-full">
           <input
             type="text"

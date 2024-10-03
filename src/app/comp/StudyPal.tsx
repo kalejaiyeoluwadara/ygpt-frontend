@@ -8,6 +8,7 @@ import { MdOutlineImageSearch } from "react-icons/md"; // Icon for empty state
 import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { useGlobal } from "../context";
+import StudyChat from "./StudyChat";
 type Tmessage = {
   sender: string;
   text?: string;
@@ -82,19 +83,19 @@ function StudyPal() {
       {/* Nav */}
       <Nav side={side} setAside={setAside} />
       {/* Main content */}
-      <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center  p-2 sm:p-4">
-        {messages.length === 0 ? (
+      <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center sm:mt-0 mt-8  p-2 sm:p-4">
+        {!file ? (
           <div className="flex flex-col items-center text-center max-w-md">
             {/* Icon */}
-            <TbSquareRoundedLetterYFilled className="text-white" size={40} />
+            <TbSquareRoundedLetterYFilled className="text-white" size={60} />
             {/* Title */}
-            <p className="text-2xl font-bold mt-20 text-gray-100">
+            <p className="text-2xl font-bold mt-12 sm:mt-[40px] text-gray-100">
               Welcome to YGPT Studypal
             </p>
             {/* Description */}
-            <p className="text-gray-200 mb-4">
+            <p className="text-gray-200 sm:px-0 px-3  mt-2 mb-6">
               Upload a File, and StudyPal will summarise, create tips, notes and
-              quizes based on the your text file.
+              quizes based on your file.
             </p>
             {/* Call to action */}
             <label
@@ -107,15 +108,16 @@ function StudyPal() {
             {/* Hidden file input */}
             <input
               type="file"
-              accept="image/*"
+              accept=".pdf, .doc, .docx, .ppt, .pptx"
               onChange={handleFileChange}
               className="hidden"
               id="file-upload"
             />
+
             {error && <div className="text-red-500 text-sm mt-4">{error}</div>}
           </div>
         ) : (
-          <VisionChat messages={messages} loading={loading} />
+          <StudyChat />
         )}
       </main>
       {/* Footer for file input and submission */}
@@ -123,7 +125,7 @@ function StudyPal() {
         <div className="w-auto bg-neutral-700 px-2 py-3 flex-center h-[50px] rounded-full">
           <input
             type="file"
-            accept="image/*"
+            accept=".pdf, .doc, .docx, .ppt, .pptx"
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
@@ -134,7 +136,9 @@ function StudyPal() {
 
           {file && (
             <div className="ml-3 text-white text-sm">
-              <p>Image attached: {file.name}</p>
+              <p className="max-w-[200px] truncate ">
+                File attached: {file.name}
+              </p>
             </div>
           )}
 
