@@ -5,7 +5,7 @@ import Vision from "../comp/Vision";
 import StudyPal from "../comp/StudyPal";
 function Page() {
   return (
-    <main className="flex bg-zinc-800 h-full w-full ">
+    <main className="flex bg-zinc-800 h-screen overflow-y-hidden w-full ">
       <SideBar />
       <StudyPal />
     </main>
