@@ -4,7 +4,7 @@ import { RiAttachment2 } from "react-icons/ri";
 import VisionChat from "./VisionChat";
 import Nav from "./MainNav";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
-import { MdOutlineImageSearch } from "react-icons/md"; // Icon for empty state
+import { MdOutlineImageSearch } from "react-icons/md";
 import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { useGlobal } from "../context";
@@ -18,63 +18,15 @@ type Tmessage = {
 function StudyPal() {
   const { side, setAside } = useGlobal();
   const [empty, setRemoveEmpty] = useState(true);
-  const [file, setFile] = useState<File | null>(null); // File state for uploading images
-  const [messages, setMessages] = useState<Tmessage[]>([]); // Type the state
+  const { file, setFile } = useGlobal();
+  const [messages, setMessages] = useState<Tmessage[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); // Error state
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
-      setError(null); // Clear any previous error when a new file is selected
-    }
-  };
-
-  const sendMessage = async () => {
-    if (!file) {
-      setError("Please attach an image before sending."); // Error if no image is attached
-      return;
-    }
-
-    setRemoveEmpty(false);
-    setLoading(true);
-    setError(null); // Clear any previous error
-
-    // Add the human message with the image to the chat
-    const imageUrl = URL.createObjectURL(file);
-    setMessages((prev) => [...prev, { imageUrl, sender: "human" }]);
-
-    const formData = new FormData();
-    formData.append("image", file); // Add file to form data
-
-    try {
-      const response = await axios.post(
-        "https://gemini-api-46ez.onrender.com/vision",
-        formData, // Send image data
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Set content type for file uploads
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        // Add the AI response to the chat
-        setMessages((prev) => [
-          ...prev,
-          { text: response.data.text, sender: "ai" },
-        ]);
-      } else {
-        setError(
-          response.data.error ||
-            "An error occurred while generating a response."
-        );
-      }
-    } catch (error) {
-      setError("Failed to fetch AI response. Please try again later.");
-    } finally {
-      setLoading(false);
-      setFile(null); // Clear the file after submission
+      setError(null);
     }
   };
 
@@ -125,7 +77,7 @@ function StudyPal() {
         <div className="w-auto bg-neutral-700 px-2 py-3 flex-center h-[50px] rounded-full">
           <input
             type="file"
-            accept=".pdf, .doc, .docx, .ppt, .pptx"
+            accept=".pdf, .doc, .docx, .txt"
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
@@ -143,7 +95,6 @@ function StudyPal() {
           )}
 
           <button
-            onClick={sendMessage}
             disabled={loading} // Disable button while loading
             className={`ml-3 h-[40px] w-[40px] flex-center transition-all rounded-full ${
               !file || loading

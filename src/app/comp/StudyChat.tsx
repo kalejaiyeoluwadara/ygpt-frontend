@@ -1,31 +1,31 @@
 import React from "react";
 import book from "@/app/assets/book.webp";
 import Image from "next/image";
-import { BiBulb } from "react-icons/bi"; // Suggests ideas or tips
-import { BsBook } from "react-icons/bs"; // Suitable for summarizing content
-import { FaPen } from "react-icons/fa"; // Represents note-taking
-import { MdOutlineQuiz } from "react-icons/md"; // Represents quiz generation
+import { BiBulb } from "react-icons/bi";
+import { BsBook } from "react-icons/bs";
+import { FaPen } from "react-icons/fa";
+import { MdOutlineQuiz } from "react-icons/md";
 
 function StudyChat() {
   const prompts = [
     {
       text: "Create tips",
-      icon: BiBulb, // Light bulb for creating tips
+      icon: BiBulb,
       color: "text-red-400",
     },
     {
       text: "Summarise",
-      icon: BsBook, // Book icon for summarization
+      icon: BsBook,
       color: "text-green-400",
     },
     {
       text: "Short note",
-      icon: FaPen, // Pen icon for note-taking
+      icon: FaPen,
       color: "text-yellow-400",
     },
     {
       text: "Generate quiz",
-      icon: MdOutlineQuiz, // Quiz icon for generating quizzes
+      icon: MdOutlineQuiz,
       color: "text-purple-400",
     },
   ];

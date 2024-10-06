@@ -5,8 +5,8 @@ import AppProvider from "@/app/context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Yoruba-gpt",
-  description: "Yoruba gpt",
+  title: "YGPT",
+  description: "YGPT",
 };
 
 export default function RootLayout({

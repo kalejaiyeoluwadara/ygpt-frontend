@@ -5,8 +5,10 @@ import React, { useContext, useState, ReactNode } from "react";
 interface AppContextType {
   side: boolean;
   hide: boolean;
+  file: File | null;
   setAside: React.Dispatch<React.SetStateAction<boolean>>;
   setHide: React.Dispatch<React.SetStateAction<boolean>>;
+  setFile: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
@@ -18,9 +20,12 @@ interface Props {
 function AppProvider({ children }: Props) {
   const [side, setAside] = useState<boolean>(false);
   const [hide, setHide] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
 
   return (
-    <AppContext.Provider value={{ side, setAside, hide, setHide }}>
+    <AppContext.Provider
+      value={{ side, setAside, hide, setHide, file, setFile }}
+    >
       {children}
     </AppContext.Provider>
   );
