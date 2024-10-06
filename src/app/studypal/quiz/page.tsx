@@ -9,15 +9,15 @@ import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
-  const [summary, setSummary] = useState<string>("");
+  const [quiz, setQuiz] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchSummary = async () => {
+    const fetchQuiz = async () => {
       if (!file) {
-        setSummary("No file uploaded yet.");
+        setQuiz("No file uploaded yet.");
         return;
       }
 
@@ -29,7 +29,7 @@ function Summarise() {
 
       try {
         const response = await fetch(
-          "https://gemini-api-46ez.onrender.com/studypal/summarise",
+          "https://gemini-api-46ez.onrender.com/studypal/quiz",
           {
             method: "POST",
             body: formData,
@@ -41,16 +41,16 @@ function Summarise() {
         }
 
         const data = await response.json();
-        setSummary(data || "No summary available.");
+        setQuiz(data || "No quiz available.");
       } catch (error: any) {
-        console.error("Error fetching summary:", error);
-        setError(error.message || "Error summarizing file.");
+        console.error("Error fetching quiz:", error);
+        setError(error.message || "Error generating quiz from file.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchSummary();
+    fetchQuiz();
   }, []);
 
   return (
@@ -60,10 +60,10 @@ function Summarise() {
         <Nav side={side} setAside={setAside} />
         <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
           <div className="h-[90%] overflow-y-auto w-full">
-            {/* Loading, error, and summary display */}
-            {loading && <p>Loading summary...</p>}
+            {/* Loading, error, and quiz display */}
+            {loading && <p>Loading quiz...</p>}
             {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && summary && (
+            {!loading && !error && quiz && (
               <main className="">
                 {/* go back */}
                 <div className="mb-6 flex items-center  ">
@@ -81,7 +81,7 @@ function Summarise() {
                 <ReactMarkdown
                   className={"text-white tracking-wide leading-loose "}
                 >
-                  {summary}
+                  {quiz}
                 </ReactMarkdown>
               </main>
             )}

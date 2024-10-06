@@ -94,7 +94,7 @@ function StudyPal() {
             </div>
           )}
 
-          <button
+          {/* <button
             disabled={loading} // Disable button while loading
             className={`ml-3 h-[40px] w-[40px] flex-center transition-all rounded-full ${
               !file || loading
@@ -103,7 +103,7 @@ function StudyPal() {
             }`}
           >
             <HiOutlineArrowSmUp size={25} />
-          </button>
+          </button> */}
         </div>
       </footer>
 

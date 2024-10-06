@@ -9,15 +9,15 @@ import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
-  const [summary, setSummary] = useState<string>("");
+  const [tips, setTips] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchSummary = async () => {
+    const fetchTips = async () => {
       if (!file) {
-        setSummary("No file uploaded yet.");
+        setTips("No file uploaded yet.");
         return;
       }
 
@@ -29,7 +29,7 @@ function Summarise() {
 
       try {
         const response = await fetch(
-          "https://gemini-api-46ez.onrender.com/studypal/summarise",
+          "https://gemini-api-46ez.onrender.com/studypal/tips",
           {
             method: "POST",
             body: formData,
@@ -37,20 +37,22 @@ function Summarise() {
         );
 
         if (!response.ok) {
-          throw new Error(`Failed to summarize file: ${response.statusText}`);
+          throw new Error(
+            `Failed to generate tips from file: ${response.statusText}`
+          );
         }
 
         const data = await response.json();
-        setSummary(data || "No summary available.");
+        setTips(data || "No tips available.");
       } catch (error: any) {
-        console.error("Error fetching summary:", error);
-        setError(error.message || "Error summarizing file.");
+        console.error("Error fetching tips:", error);
+        setError(error.message || "Error generating tips from file.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchSummary();
+    fetchTips();
   }, []);
 
   return (
@@ -60,10 +62,10 @@ function Summarise() {
         <Nav side={side} setAside={setAside} />
         <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
           <div className="h-[90%] overflow-y-auto w-full">
-            {/* Loading, error, and summary display */}
-            {loading && <p>Loading summary...</p>}
+            {/* Loading, error, and tips display */}
+            {loading && <p>Loading tips...</p>}
             {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && summary && (
+            {!loading && !error && tips && (
               <main className="">
                 {/* go back */}
                 <div className="mb-6 flex items-center  ">
@@ -81,7 +83,7 @@ function Summarise() {
                 <ReactMarkdown
                   className={"text-white tracking-wide leading-loose "}
                 >
-                  {summary}
+                  {tips}
                 </ReactMarkdown>
               </main>
             )}
