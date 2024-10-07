@@ -75,6 +75,7 @@ function Page() {
                 id="email"
                 type="email"
                 name="email"
+                placeholder="Enter email"
                 value={user.email}
                 onChange={handleChange}
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
@@ -95,7 +96,7 @@ function Page() {
                 name="password"
                 value={user.password}
                 onChange={handleChange}
-                placeholder="Password"
+                placeholder="Enter password"
                 className="mt-1 block w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-200"
                 required
               />
