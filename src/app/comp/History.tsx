@@ -22,27 +22,27 @@ function History() {
   const router = useRouter();
 
   // Fetch chat history on component mount
-  // useEffect(() => {
-  //   const fetchChatHistory = async () => {
-  //     try {
-  //       const response = await fetch("/api/history", {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       });
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await fetch("/api/history", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-  //       const data = await response.json();
-  //       setChatHistory(data.chatHistory || []); // Ensure chatHistory is an array
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching chat history:", error);
-  //       setLoading(false);
-  //     }
-  //   };
+        const data = await response.json();
+        setChatHistory(data.chatHistory || []); // Ensure chatHistory is an array
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching chat history:", error);
+        setLoading(false);
+      }
+    };
 
-  //   fetchChatHistory();
-  // }, []);
+    fetchChatHistory();
+  }, []);
 
   // Handle clicking a chat history item (navigate to the chat)
   const handleChatClick = (chatId: string) => {
