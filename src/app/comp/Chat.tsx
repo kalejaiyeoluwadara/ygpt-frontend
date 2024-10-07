@@ -17,7 +17,7 @@ function Chat({ messages, loading }: Ichat) {
   const mlength = messages.length - 1;
 
   return (
-    <div className="h-[300px]  w-full flex flex-1 items-start flex-col gap-8 p-4 overflow-y-auto">
+    <div className="sm:h-[300px] h-full w-full flex flex-1 items-start flex-col gap-8 p-4 overflow-y-auto">
       {messages.map((message, index) => (
         <div
           key={index}
@@ -35,7 +35,6 @@ function Chat({ messages, loading }: Ichat) {
               <ReactMarkdown className={"text-gray-200"}>
                 {message.text}
               </ReactMarkdown>
-              ;
             </section>
           ) : (
             <p className="whitespace-pre-wrap">{message.text}</p>

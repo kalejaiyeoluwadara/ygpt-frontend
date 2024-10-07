@@ -7,6 +7,7 @@ import Nav from "@/app/comp/MainNav";
 import ReactMarkdown from "react-markdown";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import Back from "@/app/comp/back";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [note, setNote] = useState<string>("");
@@ -68,17 +69,7 @@ function Summarise() {
             {!loading && !error && note && (
               <main className="">
                 {/* go back */}
-                <div className="mb-6 flex items-center  ">
-                  <div
-                    onClick={() => router.back()}
-                    className="p-1 rounded-md hover:bg-stone-700 transition-all"
-                  >
-                    <IoArrowBack
-                      className="text-gray-200 cursor-pointer "
-                      size={25}
-                    />
-                  </div>
-                </div>
+                <Back />
                 {/* content */}
                 <ReactMarkdown
                   className={"text-white tracking-wide leading-loose "}

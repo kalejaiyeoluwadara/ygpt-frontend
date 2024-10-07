@@ -77,7 +77,7 @@ function Nav({ side, setAside }: SideBarProps) {
           <IoIosArrowDown className=" animate-bounce " size={15} />
           {/* Modal */}
           {modal && (
-            <div className="absolute flex z-50 flex-col border border-gray-500 left-[-2px] bottom-[-14rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
+            <div className="absolute flex z-50 flex-col border border-gray-500 sm:left-[-2px] left-[-29px] bottom-[-14rem] h-auto w-[330px] rounded-[15px] bg-neutral-700 py-4 px-4">
               {/* Prompt */}
               <Link
                 href={"/"}

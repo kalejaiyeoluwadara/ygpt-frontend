@@ -5,8 +5,9 @@ import StudyPal from "@/app/comp/StudyPal";
 import { useGlobal } from "@/app/context";
 import Nav from "@/app/comp/MainNav";
 import ReactMarkdown from "react-markdown";
-import { IoArrowBack } from "react-icons/io5";
+
 import { useRouter } from "next/navigation";
+import Back from "@/app/comp/back";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [summary, setSummary] = useState<string>("");
@@ -41,7 +42,7 @@ function Summarise() {
         }
 
         const data = await response.json();
-        setSummary(data || "No summary available.");
+        setSummary(data.geminiResponse || "No summary available.");
       } catch (error: any) {
         console.error("Error fetching summary:", error);
         setError(error.message || "Error summarizing file.");
@@ -65,18 +66,7 @@ function Summarise() {
             {error && <p className="text-red-500">{error}</p>}
             {!loading && !error && summary && (
               <main className="">
-                {/* go back */}
-                <div className="mb-6 flex items-center  ">
-                  <div
-                    onClick={() => router.back()}
-                    className="p-1 rounded-md hover:bg-stone-700 transition-all"
-                  >
-                    <IoArrowBack
-                      className="text-gray-200 cursor-pointer "
-                      size={25}
-                    />
-                  </div>
-                </div>
+                <Back />
                 {/* content */}
                 <ReactMarkdown
                   className={"text-white tracking-wide leading-loose "}
