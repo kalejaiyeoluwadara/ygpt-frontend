@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Back from "@/app/comp/back";
+import Copy from "@/app/comp/Copy";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [note, setNote] = useState<string>("");
@@ -67,7 +68,7 @@ function Summarise() {
             {loading && <p>Loading note...</p>}
             {error && <p className="text-red-500">{error}</p>}
             {!loading && !error && note && (
-              <main className="">
+              <main className="relative pb-12">
                 {/* go back */}
                 <Back />
                 {/* content */}
@@ -76,6 +77,8 @@ function Summarise() {
                 >
                   {note}
                 </ReactMarkdown>
+                {/* Like and copy */}
+                <Copy summary={note} />
               </main>
             )}
           </div>
