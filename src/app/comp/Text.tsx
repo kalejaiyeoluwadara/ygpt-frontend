@@ -24,7 +24,12 @@ function Text({ loading, error, text: summary }: TextP) {
               {summary}
             </ReactMarkdown>
             {/* Like and copy */}
-            <Copy summary={summary} />
+            <Copy
+              onLike={() => {
+                console.log("Liked");
+              }}
+              summary={summary}
+            />
           </main>
         )}
       </div>
