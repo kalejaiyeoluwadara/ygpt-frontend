@@ -5,6 +5,7 @@ import VisionChat from "./VisionChat";
 import Nav from "./MainNav";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
 import { MdOutlineImageSearch } from "react-icons/md";
+import { TbArrowsExchange } from "react-icons/tb";
 import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { useGlobal } from "../context";
@@ -35,7 +36,16 @@ function StudyPal() {
       {/* Nav */}
       <Nav side={side} setAside={setAside} />
       {/* Main content */}
-      <main className="flex w-full h-full flex-1 items-start overflow-x-hidden justify-center sm:mt-0 mt-8  p-2 sm:p-4">
+      <main className="flex w-full h-full flex-1 items-center overflow-x-hidden justify-center sm:mt-0 mt-8 flex-col p-2 sm:p-4">
+        {/* .ppt to pdf */}
+        <div className="w-full group flex items-center translate-y-[-20px]  justify-end">
+          <p className="mr-3 opacity-0 transition-all duration-700 group-hover:opacity-100 ">
+            Covert powerpoint to PDF
+          </p>
+          <div className="h-[40px] flex-center cursor-pointer w-[40px] bg-stone-900 rounded-full ">
+            <TbArrowsExchange className="text-gray-200" />
+          </div>
+        </div>
         {!file ? (
           <div className="flex flex-col items-center text-center max-w-md">
             {/* Icon */}
@@ -47,7 +57,7 @@ function StudyPal() {
             {/* Description */}
             <p className="text-gray-200 sm:px-0 px-3  mt-2 mb-6">
               Upload a File, and StudyPal will summarise, create tips, notes and
-              quizes based on your file.
+              quizes based on your file (.pdf, .docx, .doc).
             </p>
             {/* Call to action */}
             <label
@@ -60,7 +70,7 @@ function StudyPal() {
             {/* Hidden file input */}
             <input
               type="file"
-              accept=".pdf, .doc, .docx, .ppt, .pptx"
+              accept=".pdf, .doc, .docx"
               onChange={handleFileChange}
               className="hidden"
               id="file-upload"

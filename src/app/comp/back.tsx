@@ -5,7 +5,7 @@ import { IoArrowBack } from "react-icons/io5";
 function Back() {
   const router = useRouter();
   return (
-    <div className="mb-6 fixed top-12 flex items-center  ">
+    <div className="mb-6 fixed sm:top-14 top-12 flex items-center  ">
       <div
         onClick={() => router.back()}
         className="p-1 rounded-md hover:bg-stone-700 transition-all"

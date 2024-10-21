@@ -10,6 +10,7 @@ import { SlLike } from "react-icons/sl";
 import { useRouter } from "next/navigation";
 import Back from "@/app/comp/back";
 import Copy from "@/app/comp/Copy";
+import Text from "@/app/comp/Text";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [summary, setSummary] = useState<string>("");
@@ -61,26 +62,8 @@ function Summarise() {
       <SideBar />
       <main className="flex flex-col w-full flex-1 h-screen items-start">
         <Nav side={side} setAside={setAside} />
-        <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
-          <div className="h-[98%]  overflow-y-auto w-full">
-            {/* Loading, error, and summary display */}
-            {loading && <p>Loading summary...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && summary && (
-              <main className="relative pb-12 ">
-                <Back />
-                {/* content */}
-                <ReactMarkdown
-                  className={"text-white tracking-wide leading-loose "}
-                >
-                  {summary}
-                </ReactMarkdown>
-                {/* Like and copy */}
-                <Copy summary={summary} />
-              </main>
-            )}
-          </div>
-        </main>
+        {/* Main content */}
+        <Text error={error} loading={loading} text={summary} />
       </main>
     </main>
   );

@@ -1,14 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SideBar from "@/app/comp/SideBar";
-import StudyPal from "@/app/comp/StudyPal";
 import { useGlobal } from "@/app/context";
 import Nav from "@/app/comp/MainNav";
-import ReactMarkdown from "react-markdown";
-import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import Back from "@/app/comp/back";
-import Copy from "@/app/comp/Copy";
+import Text from "@/app/comp/Text";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [note, setNote] = useState<string>("");
@@ -62,27 +58,7 @@ function Summarise() {
       <SideBar />
       <main className="flex flex-col w-full flex-1 h-screen items-start">
         <Nav side={side} setAside={setAside} />
-        <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
-          <div className="h-[90%] overflow-y-auto w-full">
-            {/* Loading, error, and note display */}
-            {loading && <p>Loading note...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && note && (
-              <main className="relative pb-12">
-                {/* go back */}
-                <Back />
-                {/* content */}
-                <ReactMarkdown
-                  className={"text-white tracking-wide leading-loose "}
-                >
-                  {note}
-                </ReactMarkdown>
-                {/* Like and copy */}
-                <Copy summary={note} />
-              </main>
-            )}
-          </div>
-        </main>
+        <Text error={error} loading={loading} text={note} />
       </main>
     </main>
   );

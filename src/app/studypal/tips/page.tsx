@@ -8,6 +8,7 @@ import ReactMarkdown from "react-markdown";
 import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Back from "@/app/comp/back";
+import Text from "@/app/comp/Text";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [tips, setTips] = useState<string>("");
@@ -61,24 +62,7 @@ function Summarise() {
       <SideBar />
       <main className="flex flex-col w-full flex-1 h-screen items-start">
         <Nav side={side} setAside={setAside} />
-        <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
-          <div className="h-[90%] overflow-y-auto w-full">
-            {/* Loading, error, and tips display */}
-            {loading && <p>Loading tips...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && tips && (
-              <main className="">
-                <Back />
-                {/* content */}
-                <ReactMarkdown
-                  className={"text-white tracking-wide leading-loose "}
-                >
-                  {tips}
-                </ReactMarkdown>
-              </main>
-            )}
-          </div>
-        </main>
+        <Text error={error} loading={loading} text={tips} />
       </main>
     </main>
   );

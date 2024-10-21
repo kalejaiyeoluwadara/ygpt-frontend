@@ -1,13 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SideBar from "@/app/comp/SideBar";
-import StudyPal from "@/app/comp/StudyPal";
 import { useGlobal } from "@/app/context";
 import Nav from "@/app/comp/MainNav";
-import ReactMarkdown from "react-markdown";
-import { IoArrowBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import Back from "@/app/comp/back";
+import Text from "@/app/comp/Text";
 function Summarise() {
   const { side, setAside, file } = useGlobal();
   const [quiz, setQuiz] = useState<string>("");
@@ -59,24 +56,7 @@ function Summarise() {
       <SideBar />
       <main className="flex flex-col w-full flex-1 h-screen items-start">
         <Nav side={side} setAside={setAside} />
-        <main className="flex w-full sm:h-[80%] flex-1 items-start overflow-x-hidden justify-start sm:mt-0 mt-8 p-2 sm:p-4 sm:pl-6">
-          <div className="h-[90%] overflow-y-auto w-full">
-            {/* Loading, error, and quiz display */}
-            {loading && <p>Loading quiz...</p>}
-            {error && <p className="text-red-500">{error}</p>}
-            {!loading && !error && quiz && (
-              <main className="">
-                <Back />
-                {/* content */}
-                <ReactMarkdown
-                  className={"text-white tracking-wide leading-loose "}
-                >
-                  {quiz}
-                </ReactMarkdown>
-              </main>
-            )}
-          </div>
-        </main>
+        <Text error={error} loading={loading} text={quiz} />
       </main>
     </main>
   );
