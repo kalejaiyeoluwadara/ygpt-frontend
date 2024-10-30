@@ -4,10 +4,9 @@ import { SlLike } from "react-icons/sl";
 import { BiSolidLike } from "react-icons/bi";
 type Props = {
   summary: string;
-  onLike: () => void; // Function to handle like action
 };
 
-function Copy({ summary, onLike }: Props) {
+function Copy({ summary }: Props) {
   const [isCopied, setIsCopied] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -19,7 +18,6 @@ function Copy({ summary, onLike }: Props) {
 
   const handleLike = () => {
     setIsLiked(!isLiked);
-    onLike(); // Call the provided onLike function
   };
 
   return (

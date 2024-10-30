@@ -10,6 +10,7 @@ import axios from "axios";
 import { TbSquareRoundedLetterYFilled } from "react-icons/tb";
 import { useGlobal } from "../context";
 import StudyChat from "./StudyChat";
+import Link from "next/link";
 type Tmessage = {
   sender: string;
   text?: string;
@@ -42,9 +43,12 @@ function StudyPal() {
           <p className="mr-3 opacity-0 transition-all duration-700 group-hover:opacity-100 ">
             Covert powerpoint to PDF
           </p>
-          <div className="h-[40px] flex-center cursor-pointer w-[40px] bg-stone-900 rounded-full ">
+          <Link
+            href={"https://www.ilovepdf.com/powerpoint_to_pdf"}
+            className="h-[40px] flex-center cursor-pointer w-[40px] bg-stone-900 rounded-full "
+          >
             <TbArrowsExchange className="text-gray-200" />
-          </div>
+          </Link>
         </div>
         {!file ? (
           <div className="flex flex-col items-center text-center max-w-md">
