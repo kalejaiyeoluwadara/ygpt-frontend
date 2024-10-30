@@ -44,6 +44,7 @@ function StudyPal() {
             Covert powerpoint to PDF
           </p>
           <Link
+            target="_blank"
             href={"https://www.ilovepdf.com/powerpoint_to_pdf"}
             className="h-[40px] flex-center cursor-pointer w-[40px] bg-stone-900 rounded-full "
           >
