@@ -6,7 +6,7 @@ interface P {
 }
 const Loading = ({ loading }: P) => {
   return (
-    <div className="h-full w-full center">
+    <div className="h-full w-full flex items-center justify-center ">
       <ClipLoader color="#e5e7eb " loading={loading} size={40} />
     </div>
   );

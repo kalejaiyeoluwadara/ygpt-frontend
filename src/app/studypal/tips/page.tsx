@@ -40,7 +40,8 @@ function Summarise() {
 
         if (!response.ok) {
           throw new Error(
-            `Failed to generate tips from file: ${response.statusText}`
+            // `Failed to generate tips from file: ${response.statusText}`
+            `Failed to generate tips from file: try again!`
           );
         }
 

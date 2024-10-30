@@ -35,7 +35,7 @@ function Summarise() {
         );
 
         if (!response.ok) {
-          throw new Error(`Failed to summarize file: ${response.statusText}`);
+          throw new Error(`Failed to generate quiz from file: try again`);
         }
 
         const data = await response.json();
