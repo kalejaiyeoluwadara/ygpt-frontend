@@ -18,6 +18,6 @@ const userSchema = new mongoose.Schema({
 });
 
 // Check if the model is already compiled, if not, compile it
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User2", userSchema);
 
 export default User;
